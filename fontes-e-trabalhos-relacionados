@@ -1,0 +1,22 @@
+# Fontes Bibliográficas e Trabalhos Relacionados - CONTECSI
+
+## 1. Mapeamento de Trabalhos Relacionados
+1. **ALMEIDA, J. R. et al.** Monitoramento de ativos industriais utilizando Internet das Coisas e computação em nuvem. *Revista de Tecnologia Industrial*, v. 8, n. 2, p. 45-58, 2021.
+   - *Contribuição:* Demonstra o uso de telemetria IoT em nuvem para reduzir a latência na coleta de dados industriais.
+2. **LUCKOW, A. et al.** Artificial Intelligence and Deep Learning in Automotive Manufacturing. *IEEE Software*, v. 35, n. 3, p. 79-89, 2018.
+   - *Contribuição:* Discute a integração de algoritmos de detecção de anomalias para manutenção preditiva em linhas de montagem.
+3. **SOUZA, E. A.** Arquiteturas de microsserviços aplicadas ao monitoramento de sensores IoT. *Simpósio de Computação Aplicada*, 2022.
+   - *Contribuição:* Fundamenta o uso de funções *Serverless* (AWS Lambda) para processamento sob demanda de grande volume de mensagens.
+
+## 2. Referências em Padrão Acadêmico (ABNT)
+* ASHTON, K. That ‘internet of things’ thing. **RFID Journal**, v. 22, n. 7, p. 97-114, 2009.
+* FAYYAD, U.; PIATETSKY-SHAPIRO, G.; SMYTH, P. From data mining to knowledge discovery in databases. **AI Magazine**, v. 17, n. 3, p. 37, 1996.
+* GARTNER. Top Strategic Technology Trends for 2023: Applied Observability. **Gartner Research**, 2022.
+* KORTUM, G. W. **HCI beyond the GUI: Design for haptic, speech, olfactory, and other nontraditional interfaces.** Elsevier, 2008.
+* LIMA, R. S. Desenvolvimento de dashboards interativos para apoio à decisão em chão de fábrica. **Revista de Tecnologia Industrial**, v. 12, n. 2, 2019.
+* LUCAS, F. P. A importância do indicador OEE na gestão da manutenção industrial moderna. **Portal da Engenharia**, 2019.
+* SCHWAB, K. **A quarta revolução industrial.** São Paulo: Edipro, 2016.
+* SILVA, T. M.; COSTA, R. L. Aplicação de algoritmos de aprendizado de máquina para detecção de anomalias em linhas de produção. **Congresso Brasileiro de Automática**, 2020.
+* SOUZA, R. V. Arquiteturas de software para IoT industrial: um mapeamento sistemático. **Revista de Sistemas e Computação**, 2019.
+* WORTMANN, F.; FLÜCHTER, K. Internet of things. **Business & Information Systems Engineering**, v. 57, n. 3, p. 221-224, 2015.
+* ZHOU, J. et al. Smart Manufacturing: Current Status and Future Perspectives. **Engineering**, v. 1, n. 1, 2015.
