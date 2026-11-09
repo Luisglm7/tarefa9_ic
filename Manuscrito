@@ -1,0 +1,62 @@
+# MONITORAMENTO DE PRODUTIVIDADE EM TEMPO REAL: DASHBOARD PARA EFICIÊNCIA DE MÁQUINAS INDUSTRIAIS BASEADO EM COMPUTAÇÃO EM NUVEM
+
+**Luis Gustavo de Lima Melo¹; Deivison Takatu²; Glauco Vargas Pereira dos Santos²**
+
+¹Discente do Curso Superior de Tecnologia em Mecatrônica Industrial – Faculdade de Tecnologia SENAI Sorocaba "Santa Rosália"
+²Docente / Orientador – Faculdade de Tecnologia SENAI Sorocaba "Santa Rosália"
+*E-mails:* luis.melo@aluno.senai.br; deivison.takatu@sp.senai.br; glauco.santos@sp.senai.br
+
+---
+
+### RESUMO
+A transformação digital nas indústrias, impulsionada pelo advento da Indústria 4.0, demanda rastreabilidade contínua e conectividade em tempo real entre o chão de fábrica e a gestão estratégica. Este trabalho propõe uma arquitetura *serverless* em nuvem voltada ao monitoramento de produtividade em tempo real para cálculo automatizado do indicador de Eficiência Global do Equipamento (OEE — *Overall Equipment Effectiveness*). Diante do elevado custo de implantação de softwares industriais proprietários (SCADA) e servidores locais, desenvolveu-se uma solução de baixo custo utilizando nós microcontrolados acoplados a sensores discretos, transmitindo via protocolo MQTT sob criptografia TLS 1.3 para a plataforma AWS IoT Core. O processamento dos dados é executado por funções *serverless* no AWS Lambda e persistido em base NoSQL Amazon DynamoDB, disponibilizando métricas em um dashboard reativo web com alertas preventivos de microparadas via Amazon SNS. Ensaios em bancada evidenciaram latência de ingestão inferior a 400 ms, demonstrando viabilidade técnica e fornecendo visibilidade operacional para pequenas e médias indústrias.
+
+**Palavras-chave:** Indústria 4.0; OEE; IoT Industrial; Computação em Nuvem; Serverless.
+
+---
+
+### ABSTRACT
+Digital transformation in manufacturing, driven by Industry 4.0 principles, requires real-time traceability and connectivity between the shop floor and strategic management. This work proposes a cloud-based serverless architecture for real-time productivity monitoring aimed at automated calculation of Overall Equipment Effectiveness (OEE). Given the prohibitive capital expenditures associated with traditional proprietary systems (SCADA) and on-premises physical servers, a low-cost solution was structured using microcontroller edge gateways connected to field sensors, transmitting telemetry via MQTT protocol over TLS 1.3 encryption to the AWS IoT Core service[cite: 14]. Data processing is handled through event-driven functions in AWS Lambda and persisted in an Amazon DynamoDB NoSQL database, feeding a reactive web dashboard alongside automated alert notifications powered by Amazon SNS[cite: 14]. Preliminary bench tests demonstrated propagation latency below 400 ms, confirming technical feasibility and delivering operational visibility for small and medium-sized industrial plants[cite: 14].
+
+**Keywords:** Industry 4.0; OEE; Industrial IoT; Cloud Computing; Serverless.[cite: 14]
+
+---
+
+## 1. INTRODUÇÃO E CONTEXTUALIZAÇÃO
+O paradigma da Quarta Revolução Industrial transformou o ecossistema fabril ao estabelecer a fusão contínua entre ativos físicos e sistemas ciberfísicos orientados a dados (SCHWAB, 2016)[cite: 14]. No cenário manufatureiro moderno, a velocidade na identificação de gargalos de produção e a mensuração contínua de eficiência operacional são fatores determinantes para a sustentabilidade e a competitividade industrial[cite: 14]. Contudo, diversas plantas industriais de pequeno e médio porte ainda dependem de apontamentos manuais em papel ou preenchimento de planilhas locais descentralizadas, método passível de erros operacionais e responsável por uma expressiva latência informacional na tomada de decisões gerenciais (ALMEIDA et al., 2021)[cite: 14].
+
+Observa-se que a capacidade de coletar e tratar dados originados no chão de fábrica em tempo real atua como divisor de águas na eficiência operacional. A ausência de fluxos transparentes de informação sobre o estado dos equipamentos induz a atrasos críticos na tomada de ações corretivas, elevando desperdícios (ZHOU et al., 2015). Ao automatizar a consolidação de métricas, desvincula-se a equipe de tarefas repetitivas de digitação, direcionando o foco para o diagnóstico analítico (GARTNER, 2022).
+
+---
+
+## 2. QUESTÃO DE PESQUISA E OBJETIVOS
+O problema investigado consiste na ausência de visibilidade em tempo real sobre os três pilares que compõem o indicador OEE: Disponibilidade, Performance e Qualidade[cite: 14]. As soluções de monitoramento consolidadas no mercado exigem servidores físicos locais e dispendiosas licenças de software SCADA, criando barreiras de acesso para células de produção de menor porte (LUCAS, 2019)[cite: 14].
+
+A questão de pesquisa que orienta este trabalho é: *Como estruturar uma arquitetura em nuvem de baixo custo e alta disponibilidade que converta sinais físicos de máquinas industriais em indicadores OEE consolidados em tempo real sem demandar infraestrutura física local?*
+
+O objetivo geral deste trabalho consiste em projetar, implementar em bancada e avaliar uma arquitetura *serverless* em nuvem (AWS) capaz de capturar pulsos de telemetria industrial, computar os pilares do OEE e disponibilizar os resultados em um dashboard intuitivo para os gestores industriais[cite: 14].
+
+---
+
+## 3. FUNDAMENTAÇÃO TEÓRICA E TRABALHOS RELACIONADOS
+A Internet das Coisas Industrial (IIoT) possibilita a telemetria ponta a ponta a partir de nós sensores instalados diretamente nas máquinas (ASHTON, 2009)[cite: 14]. Ao integrar esses dados a serviços elásticos em nuvem, elimina-se o custo fixo de manutenção de servidores locais (WORTMANN; FLÜCHTER, 2015)[cite: 14]. A utilização de computação sem servidor (*Serverless*) permite que o sistema processe picos de requisições sob demanda com tarifação proporcional estritamente ao volume de dados trafegado, reduzindo o custo total de propriedade (TCO) para a fábrica (SOUZA, 2022)[cite: 14].
+
+Estudos como os de Souza (2019) demonstram que o protocolo MQTT é o padrão de facto para redes industriais instáveis, devido ao baixo cabeçalho de mensagem e fraco acoplamento. Além disso, a literatura aponta que a descoberta de conhecimento em bases de dados (KDD) deve evoluir da simples coleta passiva para a detecção de anomalias (FAYYAD; PIATETSKY-SHAPIRO; SMYTH, 1996), preparando o ambiente para modelos preditivos alimentados por inteligência artificial (LUCKOW et al., 2018).
+
+---
+
+## 4. METODOLOGIA
+A abordagem metodológica é de natureza quantitativa e aplicada, desenvolvida em três etapas integradas[cite: 14]:
+
+1. **Camada de Borda (Edge Gateway):** Sensores discretos de ciclo e status de máquina são integrados a um microcontrolador de borda, responsável pela formatação dos dados em JSON e envio via protocolo MQTT com autenticação por certificados digitais e TLS 1.3[cite: 14].
+2. **Processamento Serverless em Nuvem:** O serviço AWS IoT Core gerencia o tópico de mensagens, disparando gatilhos para o AWS Lambda, onde regras lógicas calculam instantaneamente os tempos de ciclo e os componentes do OEE[cite: 14].
+3. **Persistência e Interface Web:** Os dados tratados são salvos no Amazon DynamoDB (banco NoSQL) e disponibilizados via Amazon API Gateway para um dashboard interativo em React, integrando notificações automatizadas pelo Amazon SNS em caso de paradas não planejadas[cite: 14].
+
+```mermaid
+graph LR
+    A[Sensores de Campo] -->|MQTT / TLS 1.3| B(AWS IoT Core)
+    B -->|Trigger| C{AWS Lambda}
+    C --> D[(Amazon DynamoDB)]
+    C --> E[Amazon SNS - Alertas]
+    D --> F[Dashboard Web React]
+    F --> G[Gestor de Produção]
